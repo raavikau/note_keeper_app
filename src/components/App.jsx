@@ -27,7 +27,8 @@ function App() {
             <CreateArea onAddContent={addContent} />
             {noteContent.map((noteItem, index) => {
                 return (<Note 
-                        key={1}
+                        key={index}
+                        id={index}
                         title={noteItem.title}
                         content={noteItem.content}
                         onDeleteItem={deleteNote}
