@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function CreateArea(props) {
     const [note, addNote] = useState({ title: "", content: "" });
+    const [expand, isExpanded] = useState(false);
 
     function handleChange(event) {
         const {name, value} = event.target;
@@ -19,11 +20,15 @@ function CreateArea(props) {
         event.preventDefault();
     }
 
+    function clickChange(){
+        isExpanded(true);
+    }
+
     return (
         <form>
-            <input onChange={handleChange} name="title" placeholder="Title" value={note.title} />
-            <textarea onChange={handleChange} name="content" placeholder="Take a note..."  value={note.content} />
-            <button onClick={submitNote}>Add</button>
+            { expand && ( <input onChange={handleChange} name="title" placeholder="Title" value={note.title} /> )}
+            <textarea onChange={handleChange} onClick={clickChange} name="content" placeholder="Take a note..."  rows={expand ? 3 : 1} value={note.content} />
+            { expand && ( <button onClick={submitNote}>Add</button> )}
         </form>
     ); 
 }
